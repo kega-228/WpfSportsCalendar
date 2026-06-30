@@ -1,0 +1,47 @@
+﻿<Window x:Class="WpfSportsCalendar.Windows.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:WpfSportsCalendar.Windows"
+        mc:Ignorable="d"
+        FontFamily="Segoe UI Variable Text"
+        Title="AuthorizationWindow" Height="400" Width="500">
+    <Grid>
+        <StackPanel Margin="10" x:Name="LoginScreen" VerticalAlignment="Center" Visibility="Visible">
+            <TextBlock TextAlignment="Center" FontSize="24" Margin="0, 0,0,10"> Увійдіть до акаунту </TextBlock>
+            <UniformGrid Rows="1" Width="470" Margin="0,0,0,10">
+                <StackPanel Margin="0,0,5,0">
+                    <TextBlock>Login</TextBlock>
+                    <TextBox x:Name="LoginInput"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="5,0,0,0">
+                    <TextBlock >Password</TextBlock>
+                    <PasswordBox x:Name="PasswordInput"></PasswordBox>
+                </StackPanel>
+            </UniformGrid>
+            <CheckBox x:Name="RememberMeCheck">Запам'ятати мене</CheckBox>
+            <Button Margin="0,0,0,10" Background="Transparent" BorderBrush="Transparent">Забули пароль?</Button>
+            <Button Background="Transparent" BorderBrush="Transparent" Click="CreateAccount">Новий користувач? Зареєструтейся безкоштовно</Button>
+            <Button Click="LoginButton" FontSize="18" FontWeight="SemiBold"> Увійти </Button>
+        </StackPanel>
+        
+        <StackPanel x:Name="SignupScreen" Margin="10" Visibility="Collapsed">
+            <TextBlock TextAlignment="Center" FontSize="24" Margin="0, 0,0,10"> Створення акаунту </TextBlock>
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock>Логін</TextBlock>
+                <TextBox x:Name="SignupLoginInput"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock>Пароль</TextBlock>
+                <PasswordBox x:Name="SignupPasswordInput"></PasswordBox>
+            </StackPanel>
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock>Повторіть пароль</TextBlock>
+                <PasswordBox x:Name="SignupRepeatPasswordInput"></PasswordBox>
+            </StackPanel>
+            <CheckBox IsChecked="{Binding ElementName=RememberMeCheck, Path=IsChecked}">Запам'ятати мене</CheckBox>
+            <Button FontSize="18" FontWeight="SemiBold" Click="RegistrButton">Зареєструватись</Button>
+        </StackPanel>
+    </Grid>
+</Window>
