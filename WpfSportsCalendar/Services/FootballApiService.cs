@@ -5,23 +5,6 @@ using System.Threading.Tasks;
 
 namespace WpfSportsCalendar.Services;
 
-public class ApiClub
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public string Country { get; set; } = string.Empty;
-    public string Logo { get; set; } = string.Empty;
-}
-public class TeamContainer
-{
-    public ApiClub Team { get; set; } = null!;
-}
-
-public class ApiClubResponse
-{
-    public List<TeamContainer> Response { get; set; } = new();
-}
-
 public class FootballApiService
 {
     private readonly HttpClient _httpClient;
@@ -33,6 +16,49 @@ public class FootballApiService
         _httpClient.DefaultRequestHeaders.Add("x-apisports-key", _apiKey);
 
         
+    }
+
+    public async Task<List<DisplayMatch>> GetMatchesAsync(List<int> clubsIds)
+    {
+        var allMatches = new List<DisplayMatch>();
+        if (clubsIds == null || clubsIds.Count == 0) return allMatches;
+        try
+        {
+            foreach (var id in clubsIds)
+            {
+                string url = $"https://v3.football.api-sports.io/fixtures?team={id}&season=2024";//season=2024 із-за технічних обмежень API";"
+                var result = await _httpClient.GetFromJsonAsync<FixtureResponse>(url);
+
+                if (result?.Response != null)
+                {
+                    foreach (var item in result.Response)
+                    {
+                        bool isFt = item.Fixture.Status.Short == "FT";
+                            
+                        var match = new DisplayMatch
+                        {
+                            RawDate = item.Fixture.Date.ToLocalTime(),
+                            DateText = item.Fixture.Date.ToLocalTime().ToString("dd MMMM yyyy"),
+                            IsFinished = isFt,
+                            StatusText = isFt ? "Завершен" : "Не начался",
+                            HomeTeamName = item.Teams.Home.Name == "Polessya" ? "Полісся" : item.Teams.Home.Name,
+                            HomeTeamLogo = item.Teams.Home.Logo,
+                            AwayTeamName = item.Teams.Away.Name == "Polessya" ? "Полісся" : item.Teams.Away.Name,
+                            AwayTeamLogo = item.Teams.Away.Logo,
+                            ScoreOrTime = isFt 
+                                ? $"{item.Goals.Home}:{item.Goals.Away}" 
+                                : item.Fixture.Date.ToLocalTime().ToString("HH:mm")
+                        };
+                            
+                        allMatches.Add(match);
+                    }
+                }
+            }
+        }
+        catch
+        {
+        }
+        return allMatches;
     }
     
     public async Task<List<ApiClub>> SearchClubsAsync(string query)
@@ -70,6 +96,22 @@ public class FootballApiService
         catch
         {
             return new List<ApiClub>();
+        }
+    }
+    
+    public async Task<ApiClub?> GetClubByIdAsync(int clubId)
+    {
+        try
+        {
+            string url = $"https://v3.football.api-sports.io/teams?id={clubId}";
+
+            var result = await _httpClient.GetFromJsonAsync<ApiClubResponse>(url);
+        
+            return result?.Response?.FirstOrDefault()?.Team;
+        }
+        catch
+        {
+            return null;
         }
     }
 }

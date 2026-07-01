@@ -164,3 +164,5 @@ C:\Users\evgen\RiderProjects\WpfSportsCalendar\WpfSportsCalendar\bin\Debug\net10
 C:\Users\evgen\RiderProjects\WpfSportsCalendar\WpfSportsCalendar\bin\Debug\net10.0-windows\BCrypt-Net-Next.dll
 C:\Users\evgen\RiderProjects\WpfSportsCalendar\WpfSportsCalendar\obj\Debug\net10.0-windows\Windows\ClubsWindow.g.cs
 C:\Users\evgen\RiderProjects\WpfSportsCalendar\WpfSportsCalendar\obj\Debug\net10.0-windows\Windows\ClubsWindow.baml
+C:\Users\evgen\RiderProjects\WpfSportsCalendar\WpfSportsCalendar\obj\Debug\net10.0-windows\Windows\UnsubscribeWindow.g.cs
+C:\Users\evgen\RiderProjects\WpfSportsCalendar\WpfSportsCalendar\obj\Debug\net10.0-windows\Windows\UnsubscribeWindow.baml
