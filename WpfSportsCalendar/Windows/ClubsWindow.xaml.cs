@@ -65,6 +65,7 @@ public partial class ClubsWindow : Window
             context.Subscriptions.Add(subscription);
             context.SaveChanges();
             MessageBox.Show("Підписано");
+            this.Close();
         }
     }
 }
