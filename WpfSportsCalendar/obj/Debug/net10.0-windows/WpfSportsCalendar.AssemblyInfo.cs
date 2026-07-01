@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WpfSportsCalendar")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d3398838e038552a280f0d0285d9dde641fa266")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7444ff27ee3e9e57457dbc0e087594d2a66b1891")]
 [assembly: System.Reflection.AssemblyProductAttribute("WpfSportsCalendar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WpfSportsCalendar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
